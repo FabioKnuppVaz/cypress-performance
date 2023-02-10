@@ -1,3 +1,5 @@
+[![CYPRESS RUN](https://github.com/FabioKnuppVaz/cypress-performance/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/FabioKnuppVaz/cypress-performance/actions/workflows/main.yml)
+
 # abrir o cypress
 npx cypress open
 
