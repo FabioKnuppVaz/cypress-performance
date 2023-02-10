@@ -1,4 +1,4 @@
-name: Chrome headed
+name: Cypress Tests
 on: [push]
 jobs:
   cypress-run:
