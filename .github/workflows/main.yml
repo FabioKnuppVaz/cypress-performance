@@ -4,10 +4,10 @@ jobs:
   cypress-run:
     runs-on: ubuntu-22.04
     steps:
-      - name: Build
+      - name: Checkout
         uses: actions/checkout@v3
       - name: Test
         uses: cypress-io/github-action@v5
         with:
-          headed: true
+          build: npm run build
           start: npx cypress run --record --key 9d400702-0f18-40f3-9b75-fe804e27192c
