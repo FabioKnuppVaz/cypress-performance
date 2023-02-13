@@ -1,5 +1,5 @@
 Cypress._.times(10, () => {
-    describe('testes front 1', () => {
+    describe('testes front 2', () => {
         it('login via front de sucesso', () => {
             cy.visit('https://seubarriga.wcaquino.me/login')
             cy.get('#email').type('fabio.knupp@gmail.com')
