@@ -9,5 +9,4 @@ jobs:
       - name: Test
         uses: cypress-io/github-action@v5
         with:
-          build: npm run build
           start: npx cypress run --record --key 9d400702-0f18-40f3-9b75-fe804e27192c
