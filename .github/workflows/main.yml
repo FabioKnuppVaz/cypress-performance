@@ -1,20 +1,12 @@
 name: Cypress Tests
 on: [push]
 jobs:
-  parallel-runs:
+  cypress-run:
     runs-on: ubuntu-22.04
-    strategy:
-      fail-fast: false
-      matrix:
-        machines: [1, 2]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: run tests
-        uses: cypress-io/github-action@v5
-        timeout-minutes: 10
+      - uses: actions/checkout@v3
+      - uses: cypress-io/github-action@v5
         with:
-          parallel: true
           browser: chrome
           headed: true
-          start: npx cypress run --record --key 9d400702-0f18-40f3-9b75-fe804e27192c --parallel
+          start: npx cypress run --record --key 9d400702-0f18-40f3-9b75-fe804e27192c
