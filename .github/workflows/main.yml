@@ -4,8 +4,10 @@ jobs:
   cypress-run:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: cypress-io/github-action@v5
+      - name: Build
+        uses: actions/checkout@v3
+      - name: Test
+        uses: cypress-io/github-action@v5
         with:
           browser: chrome
           headed: true
