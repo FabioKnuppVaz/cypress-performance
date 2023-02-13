@@ -3,10 +3,16 @@ on: [push]
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        machines: [1, 2]
     steps:
       - uses: actions/checkout@v3
       - uses: cypress-io/github-action@v5
         with:
+          parallel: true
+          group: GH Action parallel
           browser: chrome
           headed: true
           start: npx cypress run --record --key 9d400702-0f18-40f3-9b75-fe804e27192c
