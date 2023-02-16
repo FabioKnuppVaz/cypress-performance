@@ -1,25 +1,28 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('loginFront', () => { 
+    cy.fixture('usuario').then(usuario => {
+        cy.visit(Cypress.env('front_url') + '/login')
+        cy.get('#email').type(usuario.email)
+        cy.get('#senha').type(usuario.senha)
+        cy.xpath('//button').click()
+    })
+})
+
+Cypress.Commands.add('loginBack', () => {
+    cy.fixture('usuario').then(usuario => {
+        cy.request({
+            method: 'POST',
+            url: Cypress.env('back_url') + '/signin',
+            body: usuario,
+        })
+    })
+})
+
+Cypress.Commands.add('resetBack', (token) => {
+    cy.request({
+        method: 'GET',
+        url: Cypress.env('back_url') + '/reset',
+        headers: {
+            'Authorization': 'JWT ' + token,
+        },
+    })
+})
