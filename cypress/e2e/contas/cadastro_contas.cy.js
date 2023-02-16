@@ -42,11 +42,16 @@ describe('Testes de cadastro de contas', () => {
                 }
             }).then((response) => {
                 expect(response.status).to.eq(201)
-                cy.loginFront()
-                cy.contains('Contas').click()
-                cy.contains('Listar').click()
-                cy.get('tr td').contains(conta.nome)
+                expect(response.body.id).to.match(/\d{7}/)
+                expect(response.body.nome).to.eq(conta.nome)
+                expect(response.body.visivel).to.eq(true)
+                expect(response.body.usuario_id).to.eq(1422)
             })
+
+            cy.loginFront()
+            cy.contains('Contas').click()
+            cy.contains('Listar').click()
+            cy.get('tr td').contains(conta.nome)
         })
     })
 
